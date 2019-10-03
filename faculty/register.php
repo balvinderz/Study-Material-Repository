@@ -6,6 +6,7 @@ if(isset($_POST))
     $name= $_POST['name'];
     $password= $_POST['password'];
     $srdn = $_POST['srdn'];
+    $subject= $_POST['subject'];
     $email = $_POST['email'];
     $checkquery = "select * from faculty where srdno='$srdn'";
     $checkres = mysqli_query($connect,$checkquery);
@@ -17,7 +18,7 @@ if(isset($_POST))
     }
     else 
     {
-        $query = "insert into faculty values('$srdn','$name','$email','$password');";
+        $query = "insert into faculty values('$srdn','$name','$subject','$email','$password');";
         $res= mysqli_query($connect,$query);
         echo "<script>alert('Registration Successful');</script>";
         header("refresh:0 ;url=./index.php"); 

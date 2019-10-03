@@ -1,3 +1,18 @@
+<?php
+session_start();
+if(!isset($_SESSION['srdn']))
+header("refresh:0 ;url=./index.php"); 
+ else 
+ {
+         include '../connect.php';
+         $srdn = $_SESSION['srdn'];
+         // TODO : Convert subject to Subject Array
+         $query = "select * from faculty where srdno='$srdn'";
+         $res = mysqli_query($connect,$query);
+         while($row = mysqli_fetch_assoc($res))
+         $subject = $row['subject'];
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,19 +32,36 @@
 <body>
         <div class="container-fluid">
 
-        <div class="row">
-                <img src="rait_new.png" alt="" width="220" height="200">
-        </div>
+                        <nav class="navbar navbar-inverse">
+                                        <div class="container-fluid">
+                                                <div class="navbar-header">
+                                                        <img src="./rait_new.png" width="220px" height="90px">
+                                                </div>
+                                                
+                                                <div class="navbar-header">
+                                                    <h1>Study Material Repository</h2>
+                                                </div>
+                                                
+                                                
+                                                <form action = "logout.php" method="POST" >
+                                                  
+                                                <button class="btn btn-lg btn-danger navbar-btn" type="submit">Log out</button>
+                </form>
+                                        </div>
+                                </nav>
+                <hr>
         <div class="row">
         <div class="col-md-3">
-                <div class="row">
-                        <h1>Upload</h1>
+                <div >
+                        <button onclick="window.location='./facultypage.php'" class="mybtn btn-lg btn-outline-danger ">Upload</button>
+                
                 </div>
-                <div class="row">
-                        <h1>View Uploaded</h1>
+                
+                <div >
+                <button onclick="window.location='./viewuploaded.php'" class="mybtn btn-lg btn-outline-danger ">View Uploaded</button>
                 </div>
-                <div class="row">
-                        <h1>Other's Uploaded</h1>
+                <div >
+                        <button type="submit" class="mybtn btn-lg btn-outline-danger">Other's Uploaded</button>
                 </div>
         </div>
         <div class="col-md-9">
@@ -46,7 +78,9 @@
                         <div class="form-group">
                           <label for="subject">Subject</label>
                         <select name="subject">
-                                <option value="ADA">ADA</option>
+                                <?php
+                                echo '<option value="'.$subject.'">'.$subject.'</option>';
+                                ?>
 </select>
                         </div>
                         <div class="form-group">

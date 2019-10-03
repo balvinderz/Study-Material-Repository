@@ -1,3 +1,14 @@
+<?php 
+include '../connect.php';
+$query = "select * from subject where 1";
+
+$result = mysqli_query($connect,$query);
+$subjectlist=array();
+while($row= mysqli_fetch_assoc($result))
+{      
+        array_push($subjectlist,$row['subjectname']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +34,7 @@
                         <form method="post" action="register.php">
                                 <div class="form-group">
                                         <label for="exampleInputName">Full name</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="full name">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="full name" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail">Email</label>
@@ -34,6 +45,19 @@
                                             <input type="text" class="form-control" id="srdn" name="srdn" placeholder="Srdn no.">
                                         </div>
                                         <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <select class="form-control" name="subject" required>
+                                        <option value="">-</option>
+                                        <?php 
+                                        for($i=0;$i<sizeof($subjectlist);$i++)
+                                        {
+                                                $subject= $subjectlist[$i];
+                                                echo "<option value='".$subject."'>".$subject."</option>";
+                                        }
+                                        ?>
+                                        </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
                                             <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                                         </div>
@@ -42,7 +66,7 @@
                                             <label for="exampleInputPassword1"> Confirm Password</label>
                                             <input type="password" class="form-control" name="password" id="password" placeholder="Confirm Password">
                                         </div>
-                                
+                                        
                             
                                
                                 
