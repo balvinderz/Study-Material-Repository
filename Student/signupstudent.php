@@ -37,13 +37,21 @@
                                         <label for="exampleInputBranch">Branch</label>
                                         <input type="text" class="form-control" id="branch" name="branch" placeholder="branch">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputSem">Sem</label>
-                                        <input type="text" class="form-control" id="sem" name="sem" placeholder="sem">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dropdown button
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
-                                        <div class="form-group">
+                                        </div>
+                                                                           
+                                    <div class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
                                             <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+
                                         </div>
                                         
                                         <div class="form-group">
